@@ -47,5 +47,16 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    coins match {
+      case e :: tail =>
+        // not a valid way to give change
+        if (money < 0) 0
+        // valid way to give change
+        else if (money == 0) 1
+        // to give the change, we can use the coin or skip the coin.
+        else countChange(money - e, coins) + countChange(money, tail)
+      case _ => 0
+    }
+  }
 }
