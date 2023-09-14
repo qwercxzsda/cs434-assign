@@ -1,0 +1,10 @@
+Chapter 2
+Chapter 2 is about how to name things.
+The first rule of naming is to be explicit and meaningful. You should not abbreviate when writing names. Simillarly, you should try not to use single letter variables(except for loop variable i, j, k, ...). Also, the name must not be misleading. For example, you should only include 'list' in the name if the it is really a list. In addition, when naming, you should not duplicate types in names.
+The second rule of naming is to pick one word per concept. You should not use words with simillar meaning. For example, you should not use fetch, retrieve, and get in the same time. If you have names with simillar meanings, this will confuse people a lot. Simillarly, you should not use the same word for two different meanings. If two function does different things, the word in their name should be different.
+
+Chapter 3
+Chapter 3 is about how to write functions.
+The first rule of writing functions is that functions must be small. In other words, functions should do only one thing. In other words, functions should only have one level of abstraction. If one starts to mix different levels of abstraction, it becomes hard to tell what the important concepts are.
+The second rule is that a function's name must be explicit about what the function does. This is in the simillar context to chapter 2, which explains how to name things.
+The third rule is that we should use less arguments. To be precise, we should try not to use more that two arguments. 
