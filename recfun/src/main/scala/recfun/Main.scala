@@ -37,7 +37,7 @@ object Main {
         case '(' :: tail => balance_aux(tail, acc + 1)
         case ')' :: tail => balance_aux(tail, acc - 1)
         case _ :: tail => balance_aux(tail, acc)
-        case _ => true
+        case _ => acc == 0
       }
     }
 
