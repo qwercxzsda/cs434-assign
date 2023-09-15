@@ -1,0 +1,25 @@
+Chapter 4
+Chapter 4 is about writing comments.
+The thing is, we should try to make code express themselves, and try to write less comments. For example, we should replace comments with seperate functions with good names. This is because comments are hard to maintain. Thus, after many years, comments may become misleading.
+However, not writing comments are not always feasible, and there are some good comments. 
+- Comments to reveal the intention of the code. 
+- Comments to clarify the code, when we cannot alter the code.
+- Comments to warn the consequence, or the importance of the code.
+- TODO
+- Public API
+On the other hand, there are situations where we should not write comments.
+- Comments whose meaning is unclear.
+- Redundant comments.
+- Misleading comments, comments recording the history of the code.
+- Comments that can be replaced by functions or variables.
+
+Chapter 7
+Chapter 7 is about error handling. This chapter talks about how to perform error handling without obscuring the logic.
+- Write try-catch-finally statement first, and then fill in the details.
+- Use unchecked excpetions. If we use checked excpetions, adding a excpetion for a functions will lead to changes for all the functions that calls the modified function.
+- Provide enough information when throwing a exception.
+- Define exception classes apon caller's need. Defining a exception class, therefore wrapping the API, is useful. It minimizes the dependency of the API, and it is also useful when debugging(As you can easily call different function).
+- Try to only seperate excpetion classes when you want to catch one and pass the other.
+- Do not return Null. Throw excpetion or return special case object instead. If a thrid-party API returns Null, wrap the method.
+- Do not pass Null as arguments.
+- Consider main logic and error handling separately.
