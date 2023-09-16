@@ -139,4 +139,33 @@ class FunSetSuite extends FunSuite {
       assert(!contains(s, 2), "Filter 2")
     }
   }
+
+  test("forall") {
+    val s1: Set = x => -200 <= x && x <= 100
+    val s2: Set = x => 0 <= x && x <= 250
+    val s3: Set = singletonSet(1000)
+    assert(forall(s1, x => x < 101))
+    assert(!forall(s1, x => x < 100))
+    assert(forall(intersect(s1, s2), x => -1 < x))
+    assert(forall(s3, x => x % 2 == 0))
+  }
+
+  test("exists") {
+    val s1: Set = x => -200 <= x && x <= 100
+    val s2: Set = x => 0 <= x && x <= 250
+    val s3: Set = singletonSet(1000)
+    assert(exists(s1, x => x <= -200))
+    assert(exists(s2, x => x % 2 == 0))
+    assert(exists(intersect(s1, s2), x => x <= 0))
+    assert(!exists(intersect(s1, s2), x => x < 0))
+    assert(!exists(s3, x => x % 2 == 1))
+  }
+
+  test("map") {
+    val s1: Set = union(singletonSet(-1), singletonSet(2))
+    val s: Set = map(s1, x => x * 2)
+    assert(contains(s, -2))
+    assert(contains(s, 4))
+    assert(!contains(s, 1))
+  }
 }
