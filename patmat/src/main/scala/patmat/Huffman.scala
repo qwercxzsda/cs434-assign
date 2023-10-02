@@ -111,7 +111,20 @@ object Huffman {
    * If `trees` is a list of less than two elements, that list should be returned
    * unchanged.
    */
-  def combine(trees: List[CodeTree]): List[CodeTree] = ???
+  def combine(trees: List[CodeTree]): List[CodeTree] = {
+    def insertSorted(l: List[CodeTree], e: CodeTree): List[CodeTree] = {
+      val (front, back) = l span (x => weight(x) < weight(e))
+      front ::: e :: back
+    }
+
+    if (singleton(trees)) trees
+    else {
+      val List(firstElement, secondElement) = trees take 2
+      val newElement = makeCodeTree(firstElement, secondElement)
+      val newTrees = trees drop 2
+      insertSorted(newTrees, newElement)
+    }
+  }
 
   /**
    * This function will be called in the following way:
