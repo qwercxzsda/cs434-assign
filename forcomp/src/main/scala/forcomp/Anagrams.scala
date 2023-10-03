@@ -196,4 +196,27 @@ object Anagrams {
     if (occurrences.isEmpty) List(List())
     else anagramsTemp
   }
+
+  def sentenceAnagramsMemo(sentence: Sentence): List[Sentence] = {
+    OccurrencesAnagramsMemo.occurrencesAnagramsMemo(sentenceOccurrences(sentence))
+  }
+
+  private object OccurrencesAnagramsMemo {
+    private val memo = scala.collection.mutable.Map[Occurrences, List[Sentence]]()
+
+    def occurrencesAnagramsMemo(occurrences: Occurrences): List[Sentence] = {
+      if (memo.contains(occurrences)) memo(occurrences)
+      else {
+        val anagramsTemp: List[Sentence] = for {
+          curComb <- combinations(occurrences)
+          curWord <- dictionaryByOccurrences(curComb)
+          sentence <- occurrencesAnagramsMemo(subtract(occurrences, curComb))
+        } yield curWord :: sentence
+
+        val anagrams = if (occurrences.isEmpty) List(List()) else anagramsTemp
+        memo(occurrences) = anagrams
+        anagrams
+      }
+    }
+  }
 }
