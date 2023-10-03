@@ -193,7 +193,7 @@ object Anagrams {
       sentence <- occurrencesAnagrams(subtract(occurrences, curComb))
     } yield curWord :: sentence
 
-    if (anagramsTemp.isEmpty) List(List())
+    if (occurrences.isEmpty) List(List())
     else anagramsTemp
   }
 }
