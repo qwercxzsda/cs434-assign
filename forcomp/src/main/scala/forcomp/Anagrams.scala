@@ -126,7 +126,7 @@ object Anagrams {
     def subtractAndAppendOneElem(xElem: (Char, Int), acc: Occurrences) = {
       subtractOneOccurrence(xElem, y) match {
         case (_, 0) => acc
-        case _ => xElem :: acc
+        case newXElem => newXElem :: acc
       }
     }
 
