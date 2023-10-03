@@ -122,7 +122,25 @@ object Anagrams {
    *  Note: the resulting value is an occurrence - meaning it is sorted
    *  and has no zero-entries.
    */
-  def subtract(x: Occurrences, y: Occurrences): Occurrences = ???
+  def subtract(x: Occurrences, y: Occurrences): Occurrences = {
+    def subtractAndAppendOneElem(xElem: (Char, Int), acc: Occurrences) = {
+      subtractOneOccurrence(xElem, y) match {
+        case (_, 0) => acc
+        case _ => xElem :: acc
+      }
+    }
+
+    (x foldRight List[(Char, Int)]())(subtractAndAppendOneElem)
+  }
+
+  // The result must be x - y.
+  private def subtractOneOccurrence(xElem: (Char, Int), y: Occurrences): (Char, Int) = {
+    val (xChar: Char, xNum: Int) = xElem
+    y.find(_._1 == xChar) match {
+      case Some((_: Char, yNum: Int)) => (xChar, xNum - yNum)
+      case None => (xChar, xNum)
+    }
+  }
 
   /** Returns a list of all anagram sentences of the given sentence.
    *  
@@ -164,6 +182,18 @@ object Anagrams {
    *
    *  Note: There is only one anagram of an empty sentence.
    */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] = ???
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
+    occurrencesAnagrams(sentenceOccurrences(sentence))
+  }
 
+  private def occurrencesAnagrams(occurrences: Occurrences): List[Sentence] = {
+    val anagramsTemp: List[Sentence] = for {
+      curComb <- combinations(occurrences)
+      curWord <- dictionaryByOccurrences(curComb)
+      sentence <- occurrencesAnagrams(subtract(occurrences, curComb))
+    } yield curWord :: sentence
+
+    if (anagramsTemp.isEmpty) List(List())
+    else anagramsTemp
+  }
 }
