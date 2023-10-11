@@ -1,0 +1,20 @@
+Chapter 1
+- Writing a program is not everything. Actually, other parts usually take much more time.
+-- Program must be generalized, tested, documented(programming product)
+-- Program must work with input and output of precisely defined interfaces(programming system)
+-- Program must only use a prescribed amount of memory space, input-output devices, computer time(programming system)
+-- Program must be tested with other system components(programming system)
+- There are difficulties in programming.
+-- Program must be perfect(no bugs) to run as expected
+-- We often depend on others when writing programs(and others are not perfect)
+-- Finding all the bugs is hard
+-- Program always seems to be obsolete before(or upon) completion
+
+Chapter 2
+- More human resources does not mean less development time. In other words, man-month isn't inverse proportional.
+-- Developments are hard to parallelize, especially debugging(debugging is inherently sequential)
+-- Communication overheads are introduced as more participate in the development.
+- Estimating development time is hard.
+-- We are optimistic when scheduling(tend to think bugs will not occur)
+-- Schedule progress is poorly monitored
+-- Bugs are found at the ladder stage of development, near the deadline, where postponing the schedule is immensely hard
