@@ -75,13 +75,13 @@ trait Solver extends GameDef {
            explored: Set[Block]): Stream[(Block, List[Move])] = {
     if (initial.isEmpty) Stream()
     else {
-      val newExplored: Set[Block] =
-        (initial foldLeft explored)((acc: Set[Block], block_move: (Block, _)) => acc + block_move._1)
-
       val newNeighbors: Stream[(Block, List[Move])] = for {
         (block, moves) <- initial
-        newNeighbor <- newNeighborsOnly(neighborsWithHistory(block, moves), newExplored)
+        newNeighbor <- newNeighborsOnly(neighborsWithHistory(block, moves), explored)
       } yield newNeighbor
+
+      val newExplored: Set[Block] =
+        (newNeighbors foldLeft explored)((acc: Set[Block], block_move: (Block, _)) => acc + block_move._1)
 
       initial #::: from(newNeighbors, newExplored)
     }
@@ -91,7 +91,7 @@ trait Solver extends GameDef {
    * The stream of all paths that begin at the starting block.
    */
   lazy val pathsFromStart: Stream[(Block, List[Move])] = {
-    from(Stream((startBlock, List())), Set())
+    from(Stream((startBlock, List())), Set(startBlock))
   }
 
   /**
