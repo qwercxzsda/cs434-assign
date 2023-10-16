@@ -73,16 +73,15 @@ trait Solver extends GameDef {
    */
   def from(initial: Stream[(Block, List[Move])],
            explored: Set[Block]): Stream[(Block, List[Move])] = {
-    // TODO: incorrect implementation
-    initial match {
-      case (block, moves) #:: _ =>
-        assert(!(explored contains block), "Solver.from: block already explored")
-        val newExplored = explored + block
-        val newNeighbors =
-          newNeighborsOnly(neighborsWithHistory(block, moves), newExplored)
-        initial #::: from(newNeighbors, newExplored)
-      case _ => Stream()
-    }
+    val newExplored: Set[Block] =
+      (initial foldLeft explored)((acc: Set[Block], block_move: (Block, _)) => acc + block_move._1)
+
+    val newNeighbors: Stream[(Block, List[Move])] = for {
+      (block, moves) <- initial
+      newNeighbor <- newNeighborsOnly(neighborsWithHistory(block, moves), newExplored)
+    } yield newNeighbor
+
+    initial #::: from(newNeighbors, newExplored)
   }
 
   /**
