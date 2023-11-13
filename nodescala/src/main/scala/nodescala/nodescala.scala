@@ -56,7 +56,6 @@ trait NodeScala {
           val (request, exchange) = await(listener.nextRequest())
           respond(exchange, ct, handler(request))
         }
-        listenerSubscription.unsubscribe()
       }
     }
     Subscription(listenerSubscription, awaitNextRequestAndRespondSubscription)
