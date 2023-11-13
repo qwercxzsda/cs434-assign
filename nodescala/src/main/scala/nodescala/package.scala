@@ -38,9 +38,10 @@ package object nodescala {
     def all[T](fs: List[Future[T]]): Future[List[T]] = {
       fs match {
         case Nil => Future(Nil)
-        case e :: tail => async {
-          await(e) :: await(all(tail))
-        }
+        case e :: tail => for {
+          e_value <- e
+          tail_value <- all(tail)
+        } yield e_value :: tail_value
       }
     }
     /** Given a list of futures `fs`, returns the future holding the value of the future from `fs` that completed first.
