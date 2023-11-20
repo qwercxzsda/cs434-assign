@@ -1,0 +1,11 @@
+Chapter 3
+대부분의 프로그래머들은 작은 팀을 선호한다고 말한다. 하지만 한 가지 문제점이 있다. 작은 팀으로 어떻게 제한된 시간 내에 큰 시스템을 구축할 것인가?
+프로그래머들 사이의 productivity차이는 10배나 날 정도로 엄청나다. 하지만 경험과 productivity는 뚜렷한 correlation이 없다.
+small, sharp team의 문제점은 really big system을 만들 때 너무 느리다는 점이다.
+
+Mill's proposal
+문제를 큰 segment들로 나누고, 각 팀이 segment를 작업한다. 각 팀은 surgical team처럼 한 명이 주도하는 방식으로 구성한다.
+
+Chapter 4
+어떻게 program상에서 conceptual integirity를 유지할 것인가?
+프로그램 디자인은 민주주의보다 귀족정치를 따라야 한다. 즉, 한 명의 프로그래머가 결정을 해야 한다.
